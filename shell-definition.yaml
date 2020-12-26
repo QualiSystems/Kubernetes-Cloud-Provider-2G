@@ -34,9 +34,19 @@ node_types:
             default: Describe the resource shell template
           hide_address:
             type: string
-            default: false
+            default: true
+          Config File Path:
+            type: string
+          AWS Access Key Id:
+            type: cloudshell.datatypes.Password
+          AWS Secret Access Key:
+            type: cloudshell.datatypes.Password
+          External Service Type:
+            type: string
+            default: LoadBalancer
 
-#          ## Attributes available from the cloud provider standard
+
+   #          ## Attributes available from the cloud provider standard
 #          Region:
 #            type: string
 #            default: ''
@@ -61,6 +71,29 @@ node_types:
 #        type: string
 #        default:
 #        description: attribute description
+
+    properties:
+      Config File Path:
+        type: string
+        default:
+        description: Path to a standalone kubernetes config file containing all the relevant information for authentication. To get a portable config file run command 'kubectl config view --flatten'
+
+      AWS Access Key Id:
+        type: cloudshell.datatypes.Password
+        default:
+        description: Used for Amazon EKS clusters only.
+
+      AWS Secret Access Key:
+        type: cloudshell.datatypes.Password
+        default:
+        description: Used for Amazon EKS clusters only.
+
+      External Service Type:
+        type: string
+        default: LoadBalancer
+        description: The service type the shell will create for external services. LoadBalander type should be used when the Kuberentes cluster is hosted on a supported public cloud provider like GCP, AWS or Azure. Use NodePort when the cluster is self hosted.
+        constraints:
+          - valid_values: [ LoadBalancer, NodePort ]
 
     artifacts:
       icon:
