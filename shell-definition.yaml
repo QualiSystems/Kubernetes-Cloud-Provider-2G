@@ -37,10 +37,8 @@ node_types:
             default: true
           Config File Path:
             type: string
-          AWS Access Key Id:
-            type: cloudshell.datatypes.Password
-          AWS Secret Access Key:
-            type: cloudshell.datatypes.Password
+          AWS CP Resource Name:
+            type: string
           External Service Type:
             type: string
             default: LoadBalancer
@@ -78,15 +76,10 @@ node_types:
         default:
         description: Path to a standalone kubernetes config file containing all the relevant information for authentication. To get a portable config file run command 'kubectl config view --flatten'
 
-      AWS Access Key Id:
-        type: cloudshell.datatypes.Password
+      AWS CP Resource Name:
+        type: string
         default:
-        description: Used for Amazon EKS clusters only.
-
-      AWS Secret Access Key:
-        type: cloudshell.datatypes.Password
-        default:
-        description: Used for Amazon EKS clusters only.
+        description: Cloudshell resource name for AWS Cloud Provider.
 
       External Service Type:
         type: string

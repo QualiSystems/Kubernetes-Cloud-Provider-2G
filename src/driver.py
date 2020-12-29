@@ -342,7 +342,7 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
             request_actions = CleanupSandboxInfraRequestActions.from_request(request)
 
             flow = CleanupSandboxInfraFlow(logger, resource_config, service_provider)
-            return flow.cleanup(resource_config.sandbox_id, request_actions)
+            return flow.cleanup(request_actions)
 
     def SetAppSecurityGroups(self, context, request):
         """
