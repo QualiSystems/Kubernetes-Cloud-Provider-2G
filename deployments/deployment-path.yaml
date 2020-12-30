@@ -18,30 +18,30 @@ node_types:
     derived_from: cloudshell.nodes.CustomDeploymentOption
 
     properties:
-      Docker Image Name:
+      Image Name:
         type: string
-        description:
+        description: The container image which represents binary data that encapsulates an application.
         tags: [user_input]
-      Docker Image Tag:
+      Image Tag:
         type: string
-        description:
+        description: The container image tag which represent an image version.
         tags: [user_input]
       Internal Ports:
         type: string
-        description:
+        description: The ports used for internal communications.
         tags: [user_input]
       External Ports:
         type: string
-        description:
+        description: The ports used for external communications.
         tags: [user_input]
       Replicas:
         type: integer
         default: 1
-        description:
+        description: The number of instances will be deployed.
         tags: [user_input]
       Start Command:
         type: string
-        description:
+        description: Replace the default command for executing the container.
         tags: [user_input]
       Environment Variables:
         type: string
@@ -72,6 +72,7 @@ node_types:
       Wait for IP:
         type: boolean
         default: True
+        description:
 
 
     #    ## custom attributes example for deployment option
