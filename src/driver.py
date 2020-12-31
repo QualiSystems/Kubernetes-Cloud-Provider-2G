@@ -13,6 +13,7 @@ from cloudshell.cp.kubernetes.flows.delete import DeleteInstanceFlow
 from cloudshell.cp.kubernetes.flows.deploy import DeployFlow
 from cloudshell.cp.kubernetes.flows.power import PowerFlow
 from cloudshell.cp.kubernetes.flows.prepare import PrepareSandboxInfraFlow
+from cloudshell.cp.kubernetes.flows.refresh_ip import RefreshIpFlow
 from cloudshell.cp.kubernetes.flows.vm_details import VmDetialsFlow
 from cloudshell.cp.kubernetes.models.deploy_app import KubernetesDeployApp
 from cloudshell.cp.kubernetes.models.deployed_app import KubernetesDeployedApp
@@ -153,7 +154,15 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
         :param CancellationContext cancellation_context:
         :return:
         """
-        pass
+        dump_context("refresh-ip-context", context, r"C:\temp\context")
+        with LoggingSessionContext(context) as logger:
+            api = CloudShellSessionContext(context).get_api()
+            resource_config = KubernetesResourceConfig.from_context(self.SHELL_NAME, context, api)
+            api_clients = ApiClientsProvider().get_api_clients(resource_config)
+            service_provider = ServiceProvider(api_clients, logger, None)
+            DeployedVMActions.register_deployment_path(KubernetesDeployedApp)
+            deployed_app = DeployedVMActions.from_remote_resource(context.remote_endpoints[0], api).deployed_app
+            RefreshIpFlow(logger, resource_config, service_provider).refresh_ip(deployed_app)
 
     def GetVmDetails(self, context, requests, cancellation_context):
         """

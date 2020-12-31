@@ -74,12 +74,12 @@ node_types:
       Config File Path:
         type: string
         default:
-        description: Path to a standalone kubernetes config file containing all the relevant information for authentication. To get a portable config file run command 'kubectl config view --flatten'
+        description: Full Path to a standalone kubernetes config file containing all the relevant information for authentication. To generate a portable config file run command 'kubectl config view --flatten'
 
       AWS CP Resource Name:
         type: string
         default:
-        description: Cloudshell resource name for AWS Cloud Provider.
+        description: (Optional - EKS only) The CloudShell resource name for the AWS Cloud Provider Resource
 
       External Service Type:
         type: string

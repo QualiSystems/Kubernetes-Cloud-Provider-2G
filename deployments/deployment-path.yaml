@@ -2,12 +2,11 @@ tosca_definitions_version: tosca_simple_yaml_1_0
 
 metadata:
   template_name: Kubernetes
-  template_author: Anonymous
-  template_version: 0.1.0
+  template_author: Quali
+  template_version: 1.0.0
   template_icon: shell-icon.png
 
 description: >
-  sample deployment path file
 
 imports:
   - cloudshell_standard: cloudshell_cloud_provider_standard_1_0_0.yaml
@@ -20,55 +19,53 @@ node_types:
     properties:
       Image Name:
         type: string
-        description: The container image which represents binary data that encapsulates an application.
+        description: The name of the container image to use for creating the container. Image must exist in the image repository used by the cluster.
         tags: [user_input]
       Image Tag:
         type: string
-        description: The container image tag which represent an image version.
+        description: The container image tag (usually represents the image version).
         tags: [user_input]
       Internal Ports:
         type: string
-        description: The ports used for internal communications.
+        description: The ports required by the application for internal communications.
         tags: [user_input]
       External Ports:
         type: string
-        description: The ports used for external communications.
+        description: The ports required by the application for external communications (outside the cluster).
         tags: [user_input]
       Replicas:
         type: integer
         default: 1
-        description: The number of instances will be deployed.
+        description: The number of container instances that will be deployed.
         tags: [user_input]
       Start Command:
         type: string
-        description: Replace the default command for executing the container.
+        description: (Optional) Replace the default start command for executing the container.
         tags: [user_input]
       Environment Variables:
         type: string
-        description: Comma separated list of 'key=value' environment variables
+        description: (Optional) Comma separated list of 'key=value' environment variables that will be defined in the container.
         tags: [user_input]
       Wait for Replicas:
         type: integer
         default: 120
         description: Wait X number of seconds during power on for all replicas to be in ready state. When the value is zero or less the shell will not wait for replicas to be ready.
-
       CPU Request:
         type: string
-        description: The requested CPU for each container. Fractional requests are also allowed. For example '0.5'. Optional unless any resource request or limit is specified.
+        description: (Optional) The requested CPU for each container. Fractional requests are also allowed. For example '0.5'. Optional unless any resource request or limit is specified.
         tags: [user_input]
       RAM Request:
         type: string
-        description: The requested RAM for each container (Optional). Memory is measured in bytes. Memory is expressed as a plain integer or as a fixed-point integer using one of these suffixes - E, P, T, G, M, K. You can also use the power-of-two equivalents - Ei, Pi, Ti, Gi, Mi, Ki. For example, '256M'.
+        description: (Optional) The requested RAM for each container. Memory is measured in bytes. Memory is expressed as a plain integer or as a fixed-point integer using one of these suffixes - E, P, T, G, M, K. You can also use the power-of-two equivalents - Ei, Pi, Ti, Gi, Mi, Ki. For example, '256M'.
         tags: [user_input]
       CPU Limit:
         type: string
-        description: The CPU limit for each container (Optional). Fractional limits are also allowed. For example '0.5'.
+        description: (Optional) The CPU limit for each container. Fractional limits are also allowed. For example '0.5'.
         tags: [user_input]
       RAM Limit:
         type: string
-        description: The RAM limit for each container (Optional). Memory is measured in bytes. Memory is expressed as a plain integer or as a fixed-point integer using one of these suffixes - E, P, T, G, M, K. You can also use the power-of-two equivalents - Ei, Pi, Ti, Gi, Mi, Ki. For example, '256M'.
+        description: (Optional) The RAM limit for each container. Memory is measured in bytes. Memory is expressed as a plain integer or as a fixed-point integer using one of these suffixes - E, P, T, G, M, K. You can also use the power-of-two equivalents - Ei, Pi, Ti, Gi, Mi, Ki. For example, '256M'.
         tags: [user_input]
-
       Wait for IP:
         type: boolean
         default: True
