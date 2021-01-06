@@ -20,6 +20,7 @@ from cloudshell.cp.kubernetes.models.deployed_app import KubernetesDeployedApp
 from cloudshell.cp.kubernetes.resource_config import KubernetesResourceConfig
 from cloudshell.cp.kubernetes.services.clients import ApiClientsProvider
 from cloudshell.cp.kubernetes.services.service_provider import ServiceProvider
+from cloudshell.cp.kubernetes.services.tags import TagsService
 from cloudshell.cp.kubernetes.services.vm_details import VmDetailsProvider
 
 
@@ -69,7 +70,7 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
             resource_config = KubernetesResourceConfig.from_context(
                 shell_name=self.SHELL_NAME, context=context, api=api
             )
-            api_clients = ApiClientsProvider().get_api_clients(resource_config)
+            api_clients = ApiClientsProvider(logger).get_api_clients(resource_config)
             autoload_flow = AutolaodFlow(api_clients)
             autoload_flow.validate_config(resource_config)
 
@@ -110,12 +111,14 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
         with LoggingSessionContext(context) as logger:
             api = CloudShellSessionContext(context).get_api()
             resource_config = KubernetesResourceConfig.from_context(self.SHELL_NAME, context, api)
-            api_clients = ApiClientsProvider().get_api_clients(resource_config)
+            api_clients = ApiClientsProvider(logger).get_api_clients(resource_config)
 
             DeployVMRequestActions.register_deployment_path(KubernetesDeployApp)
             request_actions = DeployVMRequestActions.from_request(request, api)
             service_provider = ServiceProvider(api_clients, logger, CancellationContextManager(cancellation_context))
-            return DeployFlow(logger, resource_config, service_provider, VmDetailsProvider()).deploy(request_actions)
+            tag_service = TagsService(context)
+            return DeployFlow(logger, resource_config, service_provider, VmDetailsProvider(), tag_service).deploy(
+                request_actions)
 
     def PowerOn(self, context, ports):
         """
@@ -133,7 +136,7 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
         with LoggingSessionContext(context) as logger:
             api = CloudShellSessionContext(context).get_api()
             resource_config = KubernetesResourceConfig.from_context(self.SHELL_NAME, context, api)
-            api_clients = ApiClientsProvider().get_api_clients(resource_config)
+            api_clients = ApiClientsProvider(logger).get_api_clients(resource_config)
             service_provider = ServiceProvider(api_clients, logger, None)
             DeployedVMActions.register_deployment_path(KubernetesDeployedApp)
             deployed_app = DeployedVMActions.from_remote_resource(context.remote_endpoints[0], api).deployed_app
@@ -158,7 +161,7 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
         with LoggingSessionContext(context) as logger:
             api = CloudShellSessionContext(context).get_api()
             resource_config = KubernetesResourceConfig.from_context(self.SHELL_NAME, context, api)
-            api_clients = ApiClientsProvider().get_api_clients(resource_config)
+            api_clients = ApiClientsProvider(logger).get_api_clients(resource_config)
             service_provider = ServiceProvider(api_clients, logger, None)
             DeployedVMActions.register_deployment_path(KubernetesDeployedApp)
             deployed_app = DeployedVMActions.from_remote_resource(context.remote_endpoints[0], api).deployed_app
@@ -184,7 +187,7 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
         with LoggingSessionContext(context) as logger:
             api = CloudShellSessionContext(context).get_api()
             resource_config = KubernetesResourceConfig.from_context(self.SHELL_NAME, context, api)
-            api_clients = ApiClientsProvider().get_api_clients(resource_config)
+            api_clients = ApiClientsProvider(logger).get_api_clients(resource_config)
             GetVMDetailsRequestActions.register_deployment_path(KubernetesDeployedApp)
             request_actions = GetVMDetailsRequestActions.from_request(requests, api)
             service_provider = ServiceProvider(api_clients, logger, CancellationContextManager(cancellation_context))
@@ -212,7 +215,7 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
         with LoggingSessionContext(context) as logger:
             api = CloudShellSessionContext(context).get_api()
             resource_config = KubernetesResourceConfig.from_context(self.SHELL_NAME, context, api)
-            api_clients = ApiClientsProvider().get_api_clients(resource_config)
+            api_clients = ApiClientsProvider(logger).get_api_clients(resource_config)
             service_provider = ServiceProvider(api_clients, logger, None)
             DeployedVMActions.register_deployment_path(KubernetesDeployedApp)
             deployed_app = DeployedVMActions.from_remote_resource(context.remote_endpoints[0], api).deployed_app
@@ -233,7 +236,7 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
         with LoggingSessionContext(context) as logger:
             api = CloudShellSessionContext(context).get_api()
             resource_config = KubernetesResourceConfig.from_context(self.SHELL_NAME, context, api)
-            api_clients = ApiClientsProvider().get_api_clients(resource_config)
+            api_clients = ApiClientsProvider(logger).get_api_clients(resource_config)
             service_provider = ServiceProvider(api_clients, logger, None)
             DeployedVMActions.register_deployment_path(KubernetesDeployedApp)
             deployed_app = DeployedVMActions.from_remote_resource(context.remote_endpoints[0], api).deployed_app
@@ -305,12 +308,13 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
 
             resource_config = KubernetesResourceConfig.from_context(self.SHELL_NAME, context, api)
 
-            api_clients = ApiClientsProvider().get_api_clients(resource_config)
+            api_clients = ApiClientsProvider(logger).get_api_clients(resource_config)
             service_provider = ServiceProvider(api_clients, logger, CancellationContextManager(cancellation_context))
+            tag_service = TagsService(context)
 
             request_actions = PrepareSandboxInfraRequestActions.from_request(request)
 
-            flow = PrepareSandboxInfraFlow(logger, resource_config, service_provider)
+            flow = PrepareSandboxInfraFlow(logger, resource_config, service_provider, tag_service)
             return flow.prepare(request_actions)
 
     def CleanupSandboxInfra(self, context, request):
@@ -345,7 +349,7 @@ class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
 
             resource_config = KubernetesResourceConfig.from_context(self.SHELL_NAME, context, api)
 
-            api_clients = ApiClientsProvider().get_api_clients(resource_config)
+            api_clients = ApiClientsProvider(logger).get_api_clients(resource_config)
             service_provider = ServiceProvider(api_clients, logger, None)
 
             request_actions = CleanupSandboxInfraRequestActions.from_request(request)
