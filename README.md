@@ -46,6 +46,8 @@ Release: Kubernetes Cloud Provider 2G
 
 ▪ CloudShell version **9.3 and above**
 
+▪ Kubernetes version **1.8**
+
 **Note:** If your CloudShell version does not support this shell, you should consider upgrading to a later version of CloudShell or contact customer support. 
 
 ### Data Model
