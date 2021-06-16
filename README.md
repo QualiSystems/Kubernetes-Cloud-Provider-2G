@@ -64,9 +64,9 @@ The following table describes attributes that are unique to this shell and are n
 
 |Attribute Name|Data Type|Description|
 |:---|:---|:---|
-|Config File Path|String|Full Path to a standalone kubernetes config file containing all the relevant information for authentication. To generate a portable config file run command 'kubectl config view --flatten'|
+|Config File Path|String|Full Path to a standalone kubernetes config file containing all the relevant information for authentication. The file must reside on the Execution Server machine. To generate a portable config file, run command 'kubectl config view --flatten'.|
 |AWS CP Resource Name|String|(Optional - EKS only) The CloudShell resource name for the AWS Cloud Provider Resource|
-|External Service Type|String|The service type the shell will create for external services. LoadBalancer type should be used when the Kubernetes cluster is hosted on a supported public cloud provider like GCP, AWS or Azure. Use NodePort when the cluster is self hosted|
+|External Service Type|String|The service type the shell will create for external services. __LoadBalancer type__ should be used when the Kubernetes cluster is hosted on a supported public cloud provider like GCP, AWS or Azure. Use __NodePort__ when the cluster is self-hosted.|
 
 
 ### Automation
@@ -147,9 +147,9 @@ This section explains how to create a new Cloud Provider Resource using the shel
   4. Click **Create**.
   
   5. In the **Resource** dialog box, enter the following attributes with data from step 1:
-        - **Config File Path** - Type in the full path to a standalone kubernetes config file
+        - **Config File Path** - The full path to a standalone Kubernetes _config_ file (no extension) containing all the relevant information for authentication (e.g. "C:\Kubernetes\config". The file must reside on the Execution Server machine. To generate a portable config file, run command 'kubectl config view --flatten'. 
         - **AWS CP Resource Name** - **(Optional - EKS only)** The CloudShell resource name for the AWS Cloud Provider Resource
-        - **External Service Type** - The service type the shell will create for external services. LoadBalander type should be used when the Kuberentes cluster is hosted on a supported public cloud provider like GCP, AWS or Azure. Use NodePort when the cluster is self hosted.
+        - **External Service Type** - The service type the shell will create for external services. __LoadBalancer type__ should be used when the Kubernetes cluster is hosted on a supported public cloud provider like GCP, AWS or Azure. Use __NodePort__ when the cluster is self-hosted.
   
   6. Click **Continue**.
 
@@ -175,13 +175,13 @@ for information on creating Kubernetes App Templates, see [Adding a Kubernetes A
 |Attribute Name|Data Type|Description|
 |:---|:---|:---|
 |Image Name|String|The name of the container image to use for creating the container. Image must exist in the image repository used by the cluster.|
-|Image Tag|String|The container image tag (usually represents the image version).|
-|Internal Ports|String|The ports required by the application for internal communications.|
-|External Ports|String|The ports required by the application for external communications (outside the cluster).|
-|Replicas|Integer|The number of container instances that will be deployed.|
+|Image Tag|String|**(Optional)** The container image tag (usually represents the image version).|
+|Internal Ports|String|**(Optional)** The ports required by the application for internal communications.|
+|External Ports|String|Comma-separated list of the TCP ports required by the application for external communications (outside the cluster). For example: "34,161,15"|
+|Replicas|Integer|The number of container instances that will be deployed. Default is 1.|
 |Start Command|String|**(Optional)** Replace the default start command for executing the container.|
 |Environment Variables|String|**(Optional)** Comma separated list of 'key=value' environment variables that will be defined in the container.|
-|Wait for Replicas|Integer|Wait X number of seconds during power on for all replicas to be in ready state. When the value is zero or less the shell will not wait for replicas to be ready.|
+|Wait for Replicas|Integer|Wait X number of seconds during power on for all replicas to be in ready state. When the value is zero or less the shell will not wait for replicas to be ready. Default is 120.|
 |CPU Request|String|**(Optional)** The requested CPU for each container. Fractional requests are also allowed. For example '0.5'. Optional unless any resource request or limit is specified.|
 |RAM Request|STring|**(Optional)** The requested RAM for each container. Memory is measured in bytes. Memory is expressed as a plain integer or as a fixed-point integer using one of these suffixes - E, P, T, G, M, K. You can also use the power-of-two equivalents - Ei, Pi, Ti, Gi, Mi, Ki. For example, '256M'.|
 |CPU Limit|String|**(Optional)** The CPU limit for each container. Fractional limits are also allowed. For example '0.5'.|
