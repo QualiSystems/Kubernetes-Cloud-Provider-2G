@@ -183,7 +183,7 @@ for information on creating Kubernetes App Templates, see [Adding a Kubernetes A
 |Environment Variables|String|**(Optional)** Comma separated list of 'key=value' environment variables that will be defined in the container.|
 |Wait for Replicas|Integer|Wait X number of seconds during power on for all replicas to be in ready state. When the value is zero or less the shell will not wait for replicas to be ready. Default is 120.|
 |CPU Request|String|**(Optional)** The requested CPU for each container. Fractional requests are also allowed. For example '0.5'. Optional unless any resource request or limit is specified.|
-|RAM Request|STring|**(Optional)** The requested RAM for each container. Memory is measured in bytes. Memory is expressed as a plain integer or as a fixed-point integer using one of these suffixes - E, P, T, G, M, K. You can also use the power-of-two equivalents - Ei, Pi, Ti, Gi, Mi, Ki. For example, '256M'.|
+|RAM Request|String|**(Optional)** The requested RAM for each container. Memory is measured in bytes. Memory is expressed as a plain integer or as a fixed-point integer using one of these suffixes - E, P, T, G, M, K. You can also use the power-of-two equivalents - Ei, Pi, Ti, Gi, Mi, Ki. For example, '256M'.|
 |CPU Limit|String|**(Optional)** The CPU limit for each container. Fractional limits are also allowed. For example '0.5'.|
 |RAM Limit|String|**(Optional)** The RAM limit for each container. Memory is measured in bytes. Memory is expressed as a plain integer or as a fixed-point integer using one of these suffixes - E, P, T, G, M, K. You can also use the power-of-two equivalents - Ei, Pi, Ti, Gi, Mi, Ki. For example, '256M'.|
 
