@@ -66,7 +66,7 @@ The following table describes attributes that are unique to this shell and are n
 |:---|:---|:---|
 |Config File Path|String|Full Path to a standalone kubernetes config file containing all the relevant information for authentication. The file must reside on the Execution Server machine. To generate a portable config file, run command 'kubectl config view --flatten'.|
 |AWS CP Resource Name|String|(Optional - EKS only) The CloudShell resource name for the AWS Cloud Provider Resource|
-|External Service Type|String|The service type the shell will create for external services. __LoadBalancer type__ should be used when the Kubernetes cluster is hosted on a supported public cloud provider like GCP, AWS or Azure. Use __NodePort__ when the cluster is self-hosted.|
+|External Service Type|String|The service type the shell will create for external services. __LoadBalancer type__ should be used when the Kubernetes cluster is hosted on a supported public cloud provider like AWS and Azure. Use __NodePort__ when the cluster is self-hosted.|
 
 
 ### Automation
