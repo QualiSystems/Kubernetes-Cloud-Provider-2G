@@ -149,7 +149,7 @@ This section explains how to create a new Cloud Provider Resource using the shel
   5. In the **Resource** dialog box, enter the following attributes with data from step 1:
         - **Config File Path** - The full path to a standalone Kubernetes _config_ file (no extension) containing all the relevant information for authentication (e.g. "C:\Kubernetes\config". The file must reside on the Execution Server machine. To generate a portable config file, run command 'kubectl config view --flatten'. 
         - **AWS CP Resource Name** - **(Optional - EKS only)** The CloudShell resource name for the AWS Cloud Provider Resource
-        - **External Service Type** - The service type the shell will create for external services. __LoadBalancer type__ should be used when the Kubernetes cluster is hosted on a supported public cloud provider like GCP, AWS or Azure. Use __NodePort__ when the cluster is self-hosted.
+        - **External Service Type** - The service type the shell will create for external services. __LoadBalancer__ types should be used when the Kubernetes cluster is hosted on a supported public cloud provider like GCP, AWS or Azure. Use __NodePort__ when the cluster is self-hosted.
   
   6. Click **Continue**.
 
