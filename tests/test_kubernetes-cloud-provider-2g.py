@@ -1,17 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-"""
-Tests for `KubernetesCloudProviderShell2GDriver`
-"""
-
 import unittest
 
-from driver import KubernetesCloudProviderShell2GDriver
+from driver import KubernetesCloudProvider2GDriver  # noqa
 
 
-class TestKubernetesCloudProviderShell2GDriver(unittest.TestCase):
-
+class TestKubernetesCloudProvider2GDriver(unittest.TestCase):
     def setUp(self):
         pass
 
@@ -22,6 +16,7 @@ class TestKubernetesCloudProviderShell2GDriver(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
+
     sys.exit(unittest.main())
