@@ -1,7 +1,7 @@
 tosca_definitions_version: tosca_simple_yaml_1_0
 
 metadata:
-  template_name: Kubernetes Cloud Provider Shell 2G
+  template_name: Kubernetes Cloud Provider 2G
   template_author: Quali
   template_version: 0.1.0
   template_icon: shell-icon.png
@@ -13,7 +13,7 @@ imports:
   - cloudshell_standard: cloudshell_cloud_provider_standard_1_0_0.yaml
 
 node_types:
- vendor.resource.Kubernetes Cloud Provider Shell 2G:
+ vendor.resource.Kubernetes Cloud Provider 2G:
     derived_from: cloudshell.nodes.CustomCloudProvider
     capabilities:
     

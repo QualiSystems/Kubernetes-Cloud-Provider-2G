@@ -24,8 +24,8 @@ from cloudshell.cp.kubernetes.services.tags import TagsService
 from cloudshell.cp.kubernetes.services.vm_details import VmDetailsProvider
 
 
-class KubernetesCloudProviderShell2GDriver(ResourceDriverInterface):
-    SHELL_NAME = "Kubernetes Cloud Provider Shell 2G"
+class KubernetesCloudProvider2GDriver(ResourceDriverInterface):
+    SHELL_NAME = "Kubernetes Cloud Provider 2G"
 
     def __init__(self):
         """
