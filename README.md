@@ -1,6 +1,6 @@
 ![Image][1]
 
-# **Kubernetes Cloud Provider Shell 2G**
+# **Kubernetes Cloud Provider 2G**
 
 Release date: December 2020
 
@@ -28,21 +28,21 @@ CloudShell Cloud Providers shells provide the ability to provision Apps on a vir
 
 The Apps can be modeled a variety of types of services, depending on the Cloud Provider, including VMs, Containers, or Emulated instances.  
 
-### Kubernetes Cloud Provider Shell 2G
-Kubernetes Cloud Provider Shell 2G provides you with apps deployment and management capabilities on a Kubernetes cluster.
+### Kubernetes Cloud Provider 2G
+Kubernetes Cloud Provider 2G provides you with apps deployment and management capabilities on a Kubernetes cluster.
 
 The shell supports connection to a self managed cluster, an Azure Kubernetes Service cluster, or an Amazon Elastic Kubernetes Service cluster.  
 
 For more information on Kubernetes, see the vendor's official product documentation.
 
 ### Standard version
-Kubernetes Cloud Provider Shell 2G is based on the Cloud Provider Standard version **1.0.0**.
+Kubernetes Cloud Provider 2G is based on the Cloud Provider Standard version **1.0.0**.
 
 For detailed information about the shell’s structure and attributes, see the [Cloud Provider Standard](https://github.com/QualiSystems/cloudshell-standards/blob/master/Documentation/cloud_provider_standard.md) in GitHub.
 
 ### Requirements
 
-Release: Kubernetes Cloud Provider Shell 2G
+Release: Kubernetes Cloud Provider 2G
 
 ▪ CloudShell version **9.3 and above**
 
@@ -54,7 +54,7 @@ Release: Kubernetes Cloud Provider Shell 2G
 
 The shell's data model includes all shell metadata, families, and attributes.
 
-#### **Kubernetes Cloud Provider Shell 2G Attributes**
+#### **Kubernetes Cloud Provider 2G Attributes**
 
 The attribute names and types that are derived from the standard are listed in the following section of the Cloud Provider Shell Standard:
 
@@ -81,7 +81,7 @@ For detailed information on each available commands, see the following section o
 
 
 # Downloading the Shell
-The Kubernetes Cloud Provider Shell 2G shell is available from the [Quali Community Integrations](https://community.quali.com/integrations) page. 
+The Kubernetes Cloud Provider 2G shell is available from the [Quali Community Integrations](https://community.quali.com/integrations) page. 
 
 Download the files into a temporary location on your local machine. 
 
@@ -89,11 +89,11 @@ The shell comprises of the following files:
 
 |File name|Description|
 |:---|:---|
-|Kubernetes Cloud Provider Shell 2G.zip|Device shell package|
+|Kubernetes Cloud Provider 2G.zip|Device shell package|
 |cloudshell-kubernetes-dependencies-package-1.0.x.zip|Shell Python dependencies (for offline deployments only)|
 
 # Importing and Configuring the Shell
-This section describes how to import the Kubernetes Cloud Provider Shell 2G shell and configure and modify the Cloud Provider Resource created using the shell.
+This section describes how to import the Kubernetes Cloud Provider 2G shell and configure and modify the Cloud Provider Resource created using the shell.
 
 ### Importing the shell into CloudShell
 
@@ -142,7 +142,7 @@ This section explains how to create a new Cloud Provider Resource using the shel
   1. In the CloudShell Portal, in the **Inventory** dashboard, click **Add New**.
      ![Image][2]
      
-  3. From the list, select **Kubernetes Cloud Provider Shell 2G**.
+  3. From the list, select **Kubernetes Cloud Provider 2G**.
   
   4. Click **Create**.
   
@@ -155,7 +155,7 @@ This section explains how to create a new Cloud Provider Resource using the shel
 
 CloudShell will validate the provided settings and create the new resource.
 
-_**in order to us the Kubernetes Cloud Provider Shell 2G Shell you must create an appropriate App template, which would be deployed as part of the sandbox reservation. For details on app templates, see the following CloudShell Help article: [Applications' Typical Workflow](https://help.quali.com/Online%20Help/0.0/Portal/Content/CSP/MNG/Mng-Apps.htm?Highlight=App#Adding)
+_**in order to us the Kubernetes Cloud Provider 2G Shell you must create an appropriate App template, which would be deployed as part of the sandbox reservation. For details on app templates, see the following CloudShell Help article: [Applications' Typical Workflow](https://help.quali.com/Online%20Help/0.0/Portal/Content/CSP/MNG/Mng-Apps.htm?Highlight=App#Adding)
 
 for information on creating Kubernetes App Templates, see [Adding a Kubernetes App Template](#adding-a-kubernetes-app-template)**_
 
